@@ -22,9 +22,9 @@ public final class TimeMeasure {
     * - Note: so you can time individual times etc
     * timeElapsed { sleep(2.2) }.time // 2.20000
     */
-   public static func timeElapsed<T>(_ closure: () -> T) -> (value: T, time: Double) {
+   public static func timeElapsed<T>(_ closure: () throws -> T) rethrows -> (value: T, time: Double) {
       let start = DispatchTime.now()
-      let retVal: T = closure()
+      let retVal: T = try closure()
       let end = DispatchTime.now()
       let diff = end.uptimeNanoseconds - start.uptimeNanoseconds
       let time = Double(diff) / nanoToSecond
