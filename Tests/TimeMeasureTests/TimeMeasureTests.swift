@@ -3,10 +3,11 @@ import XCTest
 
 final class TimeMeasureTests: XCTestCase {
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(TimeMeasure().text, "Hello, World!")
+        let (result, time): (String, Double) = TimeMeasure.timeElapsed {
+           sleep(2)
+           return "hello world"
+        }
+        Swift.print("result \(result) time \(time)")
     }
 
     static var allTests = [

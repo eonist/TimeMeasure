@@ -2,15 +2,17 @@ import Foundation
 
 public final class TimeMeasure {
    private static let nanoToSecond: Double = 1_000_000_000
+   public typealias Operation = () throws -> Void
    /**
     * Measures how long a closure takes to complete
     * - Note: Great for UnitTesting
+    * - Note: it's also possible to use. let startTime = CFAbsoluteTimeGetCurrent(); CFAbsoluteTimeGetCurrent() - startTime
     * ## Examples:
     * print("\(timeElapsed { sleep(2.2) })") // 2.20000
     */
-   public static func timeElapsed(_ closure: () -> Void) -> Double {
+   public static func timeElapsed(_ closure: Operation) rethrows -> Double {
       let start = DispatchTime.now()
-      closure()
+      try closure()
       let end = DispatchTime.now()
       let diff = end.uptimeNanoseconds - start.uptimeNanoseconds
       return Double(diff) / nanoToSecond
