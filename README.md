@@ -15,3 +15,6 @@ print(time) // 2.20000
 ```
 ### Installation:
 - SPM: `.package(url: "https://github.com/eonist/TimeMeasure.git", .branch("master"))`
+
+### Todo:
+- Add github badge
